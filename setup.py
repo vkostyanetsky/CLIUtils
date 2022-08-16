@@ -7,7 +7,7 @@ from vkostyanetsky.cliutils.version import __version__
 setup(
     name="vkostyanetsky.cliutils",
     version=__version__,
-    description="A simple library of functions intended to make console applications development a bit faster.",
+    description="A library of functions which make CLI apps development a bit faster.",
     long_description=open("README.md", encoding="utf-8-sig").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/vkostyanetsky/CLIUtils",
