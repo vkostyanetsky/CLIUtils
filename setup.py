@@ -1,32 +1,29 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
-from fastimer.version import __version__
+from vkostyanetsky.cliutils.version import __version__
 
 
 setup(
-    name="cliutils",
+    name="vkostyanetsky.cliutils",
     version=__version__,
     description="A simple library of functions intended to make console applications development a bit faster.",
     long_description=open("README.md", encoding="utf-8-sig").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/vkostyanetsky/CliUtils",
+    url="https://github.com/vkostyanetsky/CLIUtils",
     license="MIT",
     python_requires=">=3.7",
-    packages=["cliutils"],
+    packages=["vkostyanetsky.cliutils"],
     install_requires=[],
-    entry_points={"console_scripts": ["fastimer=fastimer.fastimer:main"]},
     author="Vlad Kostyanetsky",
     author_email="vlad@kostyanetsky.me",
-    # https://pypi.org/pypi?:action=list_classifiers
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
-        "Intended Audience :: End Users/Desktop",
+        "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX",
-        "Programming Language :: Python :: 3.7",
-        "Topic :: Utilities",
+        "Programming Language :: Python :: 3.10",
     ],
     keywords="cli console menu progressbar",
 )

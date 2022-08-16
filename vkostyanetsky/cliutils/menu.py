@@ -1,7 +1,8 @@
 """
 A few classes intended to make a simple console menu which are easily to override.
 """
-import consoles.prompt
+
+from vkostyanetsky import cliutils
 
 
 class MenuBorders:
@@ -78,6 +79,8 @@ class Menu:
     A class that displays a menu and allows the user to select an option.
     """
 
+    _items: list = []
+
     @property
     def _left_margin(self) -> str:
         """
@@ -106,11 +109,8 @@ class Menu:
         """
         return 75
 
-    def __init__(self, items: list) -> None:
-        """
-        Sets the list of possible choices.
-        """
-        self._items = items
+    def __init__(self):
+        self._items = []
 
     def _top_border(self) -> str:
         """
@@ -123,7 +123,10 @@ class Menu:
 
         return f"{left_margin}{left_border}{horizontals}{right_border}"
 
-    def _inner_text(self, text: str = "", tab_size: int = 4) -> str:
+    def _empty_line(self) -> str:
+        return self._text_line("")
+
+    def _text_line(self, text: str, tab_size: int = 4) -> str:
         """
         Returns the text with verticals at the ends.
         """
@@ -165,7 +168,7 @@ class Menu:
 
         for index, item in enumerate(self._items):
 
-            choice = f"{index + 1} - {item.__doc__.strip()}"
+            choice = f"{index + 1} - {item[0]}"
             result.append(choice)
 
         return result
@@ -190,17 +193,22 @@ class Menu:
 
         return self._borders.inner_horizontal * number
 
+    def add_item(self, title: str, function) -> None:
+
+        item = title, function
+        self._items.append(item)
+
     def print(self) -> None:
         """
         Draws the menu.
         """
         print(self._top_border())
-        print(self._inner_text())
+        print(self._empty_line())
 
         for choice in self._get_choices_to_print():
-            print(self._inner_text(text=choice))
+            print(self._text_line(text=choice))
 
-        print(self._inner_text())
+        print(self._empty_line())
         print(self._bottom_border())
 
         print(self._prompt, end="")
@@ -215,7 +223,7 @@ class Menu:
 
         while choice == 0:
 
-            consoles.prompt.clear_screen()
+            cliutils.prompt.clear_terminal()
 
             self.print()
 
@@ -227,7 +235,9 @@ class Menu:
 
                 if 0 < choice <= len(self._items):
 
-                    method = self._items[choice - 1]
+                    cliutils.prompt.clear_terminal()
+
+                    method = self._items[choice - 1][1]
                     method()
 
                     break
