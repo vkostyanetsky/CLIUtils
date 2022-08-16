@@ -55,21 +55,24 @@ class MenuBorders:
     @property
     def outer_vertical(self) -> str:
         """
-        The character for an outer vertical line of the menu (the left and right sides of the menu).
+        The character for an outer vertical line of the menu
+        (the left and right sides of the menu).
         """
         return "\u2502"  # │
 
     @property
     def outer_vertical_inner_right(self) -> str:
         """
-        The character for an outer vertical line, with a protruding inner line to the right.
+        The character for an outer vertical line,
+        with a protruding inner line to the right.
         """
         return "\u251C"  # ├
 
     @property
     def outer_vertical_inner_left(self) -> str:
         """
-        The character for an outer vertical line, with a protruding inner line to the left.
+        The character for an outer vertical line,
+        with a protruding inner line to the left.
         """
         return "\u2524"  # ┤
 
@@ -215,8 +218,8 @@ class Menu:
 
     def choose(self) -> object:
         """
-        Draws a menu an offers a user to choose from the provided options. Redraws the menu
-        if a selected option is inappropriate.
+        Draws a menu an offers a user to choose from the provided options.
+        Redraws the menu if a selected option is inappropriate.
         """
         choice = 0
         method = None
