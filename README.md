@@ -4,4 +4,4 @@
 
 A simple library of functions intended to make console applications development a bit faster for me.
 
-No rocket science. To come clear, I occasionally prefer to use it instead of a some huge third-party package which can do everything for me, including making a cup of coffee.
+No rocket science; to come clear, I occasionally prefer to use it instead of a some huge third-party package which can do everything for me, including making a cup of coffee.
