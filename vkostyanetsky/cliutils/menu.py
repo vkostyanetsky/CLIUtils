@@ -7,7 +7,7 @@ from vkostyanetsky import cliutils
 
 class MenuBorders:
     """
-    Class stores Unicode drawing characters to draw a menu in a light style.
+    Class stores Unicode drawing characters to draw a menu.
     """
 
     @property
@@ -41,14 +41,16 @@ class MenuBorders:
     @property
     def inner_horizontal(self) -> str:
         """
-        The character for inner horizontal section lines (inside the menu box).
+        The character for inner horizontal section lines
+        (inside the menu box).
         """
         return "\u2500"  # ─
 
     @property
     def outer_horizontal(self) -> str:
         """
-        The character for outer horizontal lines (the top and bottom lines of the menu).
+        The character for outer horizontal lines
+        (the top and bottom lines of the menu).
         """
         return "\u2500"  # ─
 
