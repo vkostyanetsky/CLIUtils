@@ -5,7 +5,7 @@
 ## 0.2.0 - 2022-08-20
 
 ### Added
-- 
+
 - Added a new `title_and_value` function.
 - The `enter_to_continue` function renamed to `ask_for_enter`.
 - The `prompt_for_yes_or_no` function renamed to `ask_for_yes_or_no`.
