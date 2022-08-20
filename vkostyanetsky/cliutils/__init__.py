@@ -1,6 +1,9 @@
-from .menu import Menu
-from .prompt import clear_terminal
-from .prompt import enter_to_continue
-from .prompt import prompt_for_yes_or_no
+from vkostyanetsky.cliutils.menu import Menu
+from vkostyanetsky.cliutils.menu import MenuBorders
 
-__all__ = ["Menu", "clear_terminal", "enter_to_continue", "prompt_for_yes_or_no"]
+from vkostyanetsky.cliutils.prompt import clear_terminal
+from vkostyanetsky.cliutils.prompt import ask_for_enter
+from vkostyanetsky.cliutils.prompt import ask_for_yes_or_no
+from vkostyanetsky.cliutils.prompt import title_and_value
+
+__all__ = ["Menu", "MenuBorders", "clear_terminal", "ask_for_enter", "ask_for_yes_or_no", "title_and_value"]

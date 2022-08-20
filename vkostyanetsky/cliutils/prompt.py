@@ -13,7 +13,7 @@ def clear_terminal():
         print(subprocess.check_output("clear").decode())
 
 
-def enter_to_continue(message: str = None) -> None:
+def ask_for_enter(message: str = None) -> None:
     """
     A console prompt to ask the user to 'Press [Enter] to continue'.
 
@@ -28,7 +28,7 @@ def enter_to_continue(message: str = None) -> None:
     input(message)
 
 
-def prompt_for_yes_or_no(prompt: str) -> bool:
+def ask_for_yes_or_no(prompt: str) -> bool:
     """
     Prompts the user with the specified question, and expects a yes or no response.
     Returns a boolean value representing the user's answer.
@@ -43,3 +43,12 @@ def prompt_for_yes_or_no(prompt: str) -> bool:
     answer = input(prompt)
 
     return answer.strip().lower() == "y"
+
+
+def title_and_value(title: str, value: str, width: int = 15) -> str:
+    if len(title) > width:
+        width = len(title)
+
+    title = f"{title}:".ljust(width)
+
+    return f"{title} {value}"
