@@ -167,7 +167,6 @@ class Menu:
     def _get_choices_to_print(self) -> list:
         """
         Returns the numerated list of strings for possible choices.
-        It gets a title for each choice from a choice function docstring.
         """
         result = []
 
