@@ -2,6 +2,10 @@
 
 <!-- ## [Unreleased] -->
 
+### Added
+
+- Now it is possible to pass arguments to a function which represents menu item.
+
 ## 0.2.0 - 2022-08-20
 
 ### Added

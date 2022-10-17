@@ -197,9 +197,9 @@ class Menu:
 
         return self._borders.inner_horizontal * number
 
-    def add_item(self, title: str, function) -> None:
+    def add_item(self, title: str, method, params = None) -> None:
 
-        item = title, function
+        item = title, method, params
         self._items.append(item)
 
     def print(self) -> None:
@@ -241,8 +241,15 @@ class Menu:
 
                     cliutils.prompt.clear_terminal()
 
-                    method = self._items[choice - 1][1]
-                    method()
+                    item = self._items[choice - 1]
+
+                    method = item[1]
+                    params = item[2]
+
+                    if params is None:
+                        method()
+                    else:
+                        method(params)
 
                     break
 
