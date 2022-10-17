@@ -5,6 +5,7 @@
 ### Added
 
 - Now it is possible to pass arguments to a function which represents menu item.
+- The `ask_for_enter` function now returns the input string.
 
 ## 0.2.0 - 2022-08-20
 

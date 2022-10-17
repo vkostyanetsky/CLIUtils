@@ -13,9 +13,10 @@ def clear_terminal():
         print(subprocess.check_output("clear").decode())
 
 
-def ask_for_enter(message: str = None) -> None:
+def ask_for_enter(message: str = None) -> str:
     """
-    A console prompt to ask the user to 'Press [Enter] to continue'.
+    A console prompt to ask the user to enter something.
+    If message is omitted, prints 'Press [Enter] to continue'.
 
     Args:
         message (str, optional): A message to display in place of the default.
@@ -25,7 +26,7 @@ def ask_for_enter(message: str = None) -> None:
     else:
         message = "Press [Enter] to continue "
 
-    input(message)
+    return input(message)
 
 
 def ask_for_yes_or_no(prompt: str) -> bool:
