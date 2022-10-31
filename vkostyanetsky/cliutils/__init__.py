@@ -1,3 +1,5 @@
+"""Package initializer."""
+
 from vkostyanetsky.cliutils.menu import Menu, MenuBorders
 from vkostyanetsky.cliutils.prompt import (
     ask_for_enter,

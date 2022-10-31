@@ -1,3 +1,5 @@
+"""Useful methods to work with a console."""
+
 import platform
 import subprocess
 
@@ -47,6 +49,10 @@ def ask_for_yes_or_no(prompt: str) -> bool:
 
 
 def title_and_value(title: str, value: str, width: int = 15) -> str:
+    """
+    Aligns title & value by a given position.
+    """
+
     if len(title) > width:
         width = len(title)
 

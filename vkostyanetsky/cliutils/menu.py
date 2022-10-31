@@ -2,7 +2,7 @@
 A few classes intended to make a simple console menu which are easily to override.
 """
 
-from vkostyanetsky import cliutils
+from vkostyanetsky.cliutils import prompt
 
 
 class MenuBorders:
@@ -204,6 +204,9 @@ class Menu:
         return self._borders.inner_horizontal * number
 
     def add_item(self, title: str, method, params=None) -> None:
+        """
+        Adds a new menu item.
+        """
 
         item = title, method, params
         self._items.append(item)
@@ -241,7 +244,7 @@ class Menu:
 
         while choice == "":
 
-            cliutils.prompt.clear_terminal()
+            prompt.clear_terminal()
 
             self.print()
 
@@ -253,7 +256,7 @@ class Menu:
 
                 if 0 < number <= len(self._items):
 
-                    cliutils.prompt.clear_terminal()
+                    prompt.clear_terminal()
 
                     item = self._items[number - 1]
 
