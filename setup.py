@@ -1,14 +1,18 @@
+"""The package descriptor."""
+
 #!/usr/bin/env python3
 
 from setuptools import setup
 from vkostyanetsky.cliutils.version import __version__
 
+with open("README.md", encoding="utf-8-sig") as readme:
+    long_description = readme.read()
 
 setup(
     name="vkostyanetsky.cliutils",
     version=__version__,
     description="A tiny library that makes CLI apps development a bit faster.",
-    long_description=open("README.md", encoding="utf-8-sig").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/vkostyanetsky/CLIUtils",
     license="MIT",
