@@ -84,7 +84,8 @@ class Menu:
     A class that displays a menu and allows the user to select an option.
     """
 
-    _items: list = []
+    _texts: list[str]
+    _items: list
 
     @property
     def _left_margin(self) -> str:
@@ -114,7 +115,12 @@ class Menu:
         """
         return 75
 
-    def __init__(self):
+    def __init__(self, texts: list[str] | None = None):
+
+        if texts is None:
+            texts = []
+
+        self._texts = texts
         self._items = []
 
     def _top_border(self) -> str:
@@ -197,7 +203,7 @@ class Menu:
 
         return self._borders.inner_horizontal * number
 
-    def add_item(self, title: str, method, params = None) -> None:
+    def add_item(self, title: str, method, params=None) -> None:
 
         item = title, method, params
         self._items.append(item)
@@ -207,6 +213,14 @@ class Menu:
         Draws the menu.
         """
         print(self._top_border())
+
+        if self._texts is not None:
+            for text in self._texts:
+                text_lines = text.split("\n")
+                for text_line in text_lines:
+                    print(self._text_line(text_line, 2))
+                print(self._inner_border())
+
         print(self._empty_line())
 
         for choice in self._get_choices_to_print():
@@ -222,10 +236,10 @@ class Menu:
         Draws a menu an offers a user to choose from the provided options.
         Redraws the menu if a selected option is inappropriate.
         """
-        choice = 0
+        choice = ""
         method = None
 
-        while choice == 0:
+        while choice == "":
 
             cliutils.prompt.clear_terminal()
 
@@ -235,13 +249,13 @@ class Menu:
 
             if choice.isdigit():
 
-                choice = int(choice)
+                number = int(choice)
 
-                if 0 < choice <= len(self._items):
+                if 0 < number <= len(self._items):
 
                     cliutils.prompt.clear_terminal()
 
-                    item = self._items[choice - 1]
+                    item = self._items[number - 1]
 
                     method = item[1]
                     params = item[2]
@@ -253,7 +267,7 @@ class Menu:
 
                     break
 
-            choice = 0
+            choice = ""
             continue
 
         return method

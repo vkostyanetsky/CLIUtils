@@ -1,10 +1,10 @@
-from vkostyanetsky.cliutils.menu import Menu
-from vkostyanetsky.cliutils.menu import MenuBorders
-
-from vkostyanetsky.cliutils.prompt import clear_terminal
-from vkostyanetsky.cliutils.prompt import ask_for_enter
-from vkostyanetsky.cliutils.prompt import ask_for_yes_or_no
-from vkostyanetsky.cliutils.prompt import title_and_value
+from vkostyanetsky.cliutils.menu import Menu, MenuBorders
+from vkostyanetsky.cliutils.prompt import (
+    ask_for_enter,
+    ask_for_yes_or_no,
+    clear_terminal,
+    title_and_value,
+)
 
 __all__ = [
     "Menu",
