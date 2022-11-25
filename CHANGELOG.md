@@ -6,6 +6,7 @@
 
 - Now it is possible to pass arguments to a function which represents menu item.
 - The menu class received `texts` parameters intended to be shown above items.
+- A menu is able to cut a text line if is doesn't fit in its box.
 - The `ask_for_enter` function now returns the input string.
 
 ## 0.2.0 - 2022-08-20
