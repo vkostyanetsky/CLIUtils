@@ -115,6 +115,13 @@ class Menu:
         """
         return 75
 
+    @property
+    def _plug(self) -> str:
+        """
+        A small piece of text to show if a line doesn't fit instead of a cut part.
+        """
+        return " (...)"
+
     def __init__(self, texts: list[str] | None = None):
 
         if texts is None:
@@ -142,11 +149,17 @@ class Menu:
         Returns the text with verticals at the ends.
         """
         left_margin = self._left_margin
+        padding = " " * tab_size
         border = self._borders.outer_vertical
-        left_space = " " * tab_size
-        right_space = " " * (self._width - len(text) - tab_size)
 
-        return f"{left_margin}{border}{left_space}{text}{right_space}{border}"
+        right_space_length = self._width - len(text) - tab_size * 2
+        right_space = " " * right_space_length
+
+        if right_space_length < 0:
+            text_index = right_space_length - len(self._plug)
+            text = f"{text[0:text_index]}{self._plug}"
+
+        return f"{left_margin}{border}{padding}{text}{right_space}{padding}{border}"
 
     def _inner_border(self) -> str:
         """
