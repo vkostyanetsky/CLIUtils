@@ -189,9 +189,9 @@ class Menu:
         """
         result = []
 
-        for index, item in enumerate(self._items):
+        for _, item in enumerate(self._items):
 
-            choice = f"{index + 1} - {item[0]}"
+            choice = f"{item['character']} - {item['title']}"
             result.append(choice)
 
         return result
@@ -216,12 +216,23 @@ class Menu:
 
         return self._borders.inner_horizontal * number
 
-    def add_item(self, title: str, method, params=None) -> None:
+    def add_item(
+        self, title: str, method, params=None, character: str | None = None
+    ) -> None:
         """
         Adds a new menu item.
         """
 
-        item = title, method, params
+        if character is None:
+            character = str(len(self._items) + 1)
+
+        item = {
+            "title": title,
+            "method": method,
+            "params": params,
+            "character": character,
+        }
+
         self._items.append(item)
 
     def print(self) -> None:
@@ -261,27 +272,30 @@ class Menu:
 
             self.print()
 
-            choice = input()
+            choice = input().strip()
 
-            if choice.isdigit():
+            menu_items = list(
+                filter(
+                    lambda menu_item_1: menu_item_1["character"].upper()
+                    == choice.upper(),
+                    self._items,
+                )
+            )
+            menu_item = menu_items[0] if menu_items else None
 
-                number = int(choice)
+            if menu_item is not None:
 
-                if 0 < number <= len(self._items):
+                prompt.clear_terminal()
 
-                    prompt.clear_terminal()
+                method = menu_item["method"]
+                params = menu_item["params"]
 
-                    item = self._items[number - 1]
+                if params is None:
+                    method()
+                else:
+                    method(params)
 
-                    method = item[1]
-                    params = item[2]
-
-                    if params is None:
-                        method()
-                    else:
-                        method(params)
-
-                    break
+                break
 
             choice = ""
             continue
