@@ -191,7 +191,7 @@ class Menu:
 
         for _, item in enumerate(self._items):
 
-            choice = f"{item['character']} - {item['title']}"
+            choice = f"{item['character']} - {item['title']}" if item["character"] is not None else item['title']
             result.append(choice)
 
         return result
@@ -216,6 +216,21 @@ class Menu:
 
         return self._borders.inner_horizontal * number
 
+    @staticmethod
+    def get_item(title: str) -> dict:
+
+        return {
+            "title": title,
+            "method": None,
+            "params": None,
+            "character": None,
+        }
+
+    def add_item_separator(self, title: str = "") -> None:
+
+        item = self.get_item(title)
+        self._items.append(item)
+
     def add_item(
         self, title: str, method, params=None, character: str | None = None
     ) -> None:
@@ -226,12 +241,11 @@ class Menu:
         if character is None:
             character = str(len(self._items) + 1)
 
-        item = {
-            "title": title,
-            "method": method,
-            "params": params,
-            "character": character,
-        }
+        item = self.get_item(title)
+
+        item["method"] = method
+        item["params"] = params
+        item["character"] = character
 
         self._items.append(item)
 
@@ -276,7 +290,7 @@ class Menu:
 
             menu_items = list(
                 filter(
-                    lambda menu_item_1: menu_item_1["character"].upper()
+                    lambda menu_item_1: menu_item_1["character"] is not None and menu_item_1["character"].upper()
                     == choice.upper(),
                     self._items,
                 )

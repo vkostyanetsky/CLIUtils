@@ -9,6 +9,7 @@
 - Option to set a letter as a menu item trigger (instead of a digit).
 - A menu is able to cut a text line if is doesn't fit in its box.
 - The `ask_for_enter` function now returns the input string.
+- Added add_line_separator() method for the menu class.
 
 ## 0.2.0 - 2022-08-20
 
