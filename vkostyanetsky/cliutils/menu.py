@@ -239,7 +239,7 @@ class Menu:
         """
 
         if character is None:
-            character = str(len(self._items) + 1)
+            character = str(len([item for item in self._items if item["character"] is not None]) + 1)
 
         item = self.get_item(title)
 
