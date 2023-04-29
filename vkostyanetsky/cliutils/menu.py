@@ -123,7 +123,6 @@ class Menu:
         return " (...)"
 
     def __init__(self, texts: list[str] | None = None):
-
         if texts is None:
             texts = []
 
@@ -190,8 +189,11 @@ class Menu:
         result = []
 
         for _, item in enumerate(self._items):
-
-            choice = f"{item['character']} - {item['title']}" if item["character"] is not None else item['title']
+            choice = (
+                f"{item['character']} - {item['title']}"
+                if item["character"] is not None
+                else item["title"]
+            )
             result.append(choice)
 
         return result
@@ -218,6 +220,9 @@ class Menu:
 
     @staticmethod
     def get_item(title: str) -> dict:
+        """
+        Returns template for a new menu item.
+        """
 
         return {
             "title": title,
@@ -227,6 +232,9 @@ class Menu:
         }
 
     def add_item_separator(self, title: str = "") -> None:
+        """
+        Add a menu items separator (an empty line).
+        """
 
         item = self.get_item(title)
         self._items.append(item)
@@ -239,7 +247,9 @@ class Menu:
         """
 
         if character is None:
-            character = str(len([item for item in self._items if item["character"] is not None]) + 1)
+            character = str(
+                len([item for item in self._items if item["character"] is not None]) + 1
+            )
 
         item = self.get_item(title)
 
@@ -281,7 +291,6 @@ class Menu:
         method = None
 
         while choice == "":
-
             prompt.clear_terminal()
 
             self.print()
@@ -290,15 +299,14 @@ class Menu:
 
             menu_items = list(
                 filter(
-                    lambda menu_item_1: menu_item_1["character"] is not None and menu_item_1["character"].upper()
-                    == choice.upper(),
+                    lambda menu_item_1: menu_item_1["character"] is not None
+                    and menu_item_1["character"].upper() == choice.upper(),
                     self._items,
                 )
             )
             menu_item = menu_items[0] if menu_items else None
 
             if menu_item is not None:
-
                 prompt.clear_terminal()
 
                 method = menu_item["method"]
